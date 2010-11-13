@@ -75,7 +75,12 @@ chromeの場合はconsoleでCanvasPixelArrayの内容が確認できます。
 
 
 ローカル環境で画像読み込みのgetImageData()を使うとセキュリティエラーが出る。
-(Security error" code: "1000)
+<dl>
+<dt>Firefox</dt>
+<dd>Security error" code: "1000</dd>
+<dt>Chrome</dt>
+<dd>SECURITY_ERR: DOM Exception 18</dd>
+</dl>
 サーバを立てればセキュリティエラーが出ない。
 (file:では制限される。chrome特権が必要)
 
