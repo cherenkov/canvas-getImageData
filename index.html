@@ -1,0 +1,81 @@
+<html>
+<head>
+<script>
+onload = function() {
+  drawA();
+  drawB();
+
+  var btnA = document.getElementById('btnA');
+  btnA.addEventListener("click",function(){
+    getAColor();
+  },false);
+
+  var btnB = document.getElementById('btnB');
+  btnB.addEventListener("click",function(){
+    getBColor();
+  },false);
+
+};
+
+function drawA() {
+  var canvas = document.getElementById('canvasA');
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = "pink.jpg";
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+  }
+}
+
+function drawB() {
+  var canvas = document.getElementById('canvasB');
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = "data:image/jpeg;base64,%2F9j%2F4AAQSkZJRgABAQEAYABgAAD%2F2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL%2F2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL%2FwAARCAAyADIDASIAAhEBAxEB%2F8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL%2F8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4%2BTl5ufo6erx8vP09fb3%2BPn6%2F8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL%2F8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3%2BPn6%2F9oADAMBAAIRAxEAPwCeiiivtD8qCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP%2F%2FZ";
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+  }
+}
+
+function getAColor() {
+  var canvas = document.getElementById('canvasA');
+  var ctx = canvas.getContext('2d');
+  var x = 0;
+  var y = 0;
+  var c = ctx.getImageData(x, y, 1, 1).data;
+  alert(c)
+}
+
+function getBColor() {
+  var canvas = document.getElementById('canvasB');
+  var ctx = canvas.getContext('2d');
+  var x = 0;
+  var y = 0;
+  var c = ctx.getImageData(x, y, 1, 1).data;
+  alert(c)
+}
+</script>
+</head>
+<body>
+<div>
+A:画像を読み込んでいる ->
+<canvas id="canvasA" width="50" height="50"></canvas>
+</div>
+<div>
+B:dataURIを読み込んでいる ->
+<canvas id="canvasB" width="50" height="50"></canvas>
+</div>
+<button id="btnA">AをgetImageData()</button>
+<button id="btnB">BをgetImageData()</button>
+<pre>
+
+ローカルで画像読み込みのgetImageData()を使うとセキュリティエラーが出る。
+(Security error" code: "1000)
+サーバを立てればセキュリティエラーが出ない。
+(file:では制限される。chrome特権が必要)
+
+サーバを立てなくても画像をFileAPIのreadAsDataURLでdataURIにしてから
+canvasに読みこめばセキュリティエラーを回避できる。
+</pre>
+</body>
+</html>
