@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 <script>
 onload = function() {
   drawA();
@@ -43,7 +44,8 @@ function getAColor() {
   var x = 0;
   var y = 0;
   var c = ctx.getImageData(x, y, 1, 1).data;
-  alert(c)
+  alert(c.toString())
+  console.log(c)
 }
 
 function getBColor() {
@@ -52,7 +54,8 @@ function getBColor() {
   var x = 0;
   var y = 0;
   var c = ctx.getImageData(x, y, 1, 1).data;
-  alert(c)
+  alert(c.toString())
+  console.log(c)
 }
 </script>
 </head>
@@ -68,6 +71,8 @@ B:dataURIを読み込んでいる ->
 <button id="btnA">AをgetImageData()</button>
 <button id="btnB">BをgetImageData()</button>
 <pre>
+chromeの場合はconsoleでCanvasPixelArrayの内容が確認できます。
+
 
 ローカル環境で画像読み込みのgetImageData()を使うとセキュリティエラーが出る。
 (Security error" code: "1000)
